@@ -2,19 +2,22 @@ pipeline {
     agent any
 
     tools {
+        // Ensure this name matches exactly what you named it 
+        // in Manage Jenkins -> Tools
         nodejs 'node'
     }
 
     stages {
         stage('Install') {
             steps {
-                sh 'npm install'
+                // Use 'bat' instead of 'sh' for Windows environments
+                bat 'npm install'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
     }
