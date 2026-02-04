@@ -1,16 +1,21 @@
-FROM node:20-alpine
-
+# --- Stage 1: Build ---
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copy package files first to leverage Docker cache
-COPY package*.json ./
+# Copy package files from the subfolder
+COPY Color-Palate-Generator/package*.json ./
 RUN npm install
 
-# Copy the rest of the code
-COPY . .
+# Copy the entire subfolder content
+COPY Color-Palate-Generator/ .
+RUN npm run build
 
-# Expose the port your app runs on
-EXPOSE 3000
+# --- Stage 2: Serve ---
+FROM nginx:stable-alpine
+RUN rm -rf /usr/share/nginx/html/*
 
-# Using --host 0.0.0.0 is crucial for reaching the app from localhost
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Copy from the build stage (Vite builds to 'dist' by default)
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
