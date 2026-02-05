@@ -4,7 +4,9 @@ pipeline {
     environment {
         // Fixed the path syntax and appended existing path
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
-        DOCKER_HOST = 'tcp://localhost:2375'
+        IMAGE_NAME="react-app"
+        CONTAINER_NAME="react-app-container"
+        HOST_PORT= '2375'
     }
 
     stages {
