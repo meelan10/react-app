@@ -2,19 +2,19 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copy package files from the subfolder
-COPY react-app/package*.json ./
+# 1. Change this: Copy from the current directory
+COPY package*.json ./
 RUN npm install
 
-# Copy the entire subfolder content
-COPY react-app/ .
+# 2. Change this: Copy everything from the current directory
+COPY . .
 RUN npm run build
 
 # --- Stage 2: Serve ---
 FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy from the build stage (Vite builds to 'dist' by default)
+# Copy from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
