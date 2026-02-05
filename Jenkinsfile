@@ -6,7 +6,7 @@ pipeline {
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
         IMAGE_NAME="react-app"
         CONTAINER_NAME="react-app-container"
-        HOST_PORT= '2375'
+        HOST_PORT= '8081'
     }
 
     stages {
