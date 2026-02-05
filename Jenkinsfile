@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // FORCE the path here. Change the part after C: if your path is different
-        PATH = "C:\Program Files\Docker\Docker\resources\bin\docker.exe;C:\Program Files\Docker\Docker\resources\bin\docker.exe"
+        PATH = "C:\Program Files\Docker\Docker\resources\bin\docker.exe;"
         DOCKER_HOST = 'tcp://localhost:2375'
     }
 
