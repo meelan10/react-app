@@ -16,7 +16,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Meelan</h1>
+      <h1>Meelan wagle</h1>
       <p>Hare krishana hare ram </p>
 
       <div>
