@@ -14,7 +14,7 @@ RUN npm run build
 FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy from the build stage
+
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
