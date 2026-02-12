@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# 2. Change this: Copy everything from the current directory
+
 COPY . .
 RUN npm run build
 
